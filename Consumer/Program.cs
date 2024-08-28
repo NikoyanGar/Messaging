@@ -1,3 +1,7 @@
+using Consumer.DataService;
+using Consumer.Hubs;
+using Microsoft.AspNetCore.SignalR;
+
 namespace Consumer
 {
     public class Program
@@ -9,6 +13,8 @@ namespace Consumer
             builder.Services.Configure<MessageQueueOptions>(configuration.GetSection(MessageQueueOptions.Section));
             // Add services to the container.
             builder.Services.AddMessageQueues(configuration);
+            builder.Services.AddSingleton<SharedDb>();
+            builder.Services.AddSignalR();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -23,12 +29,19 @@ namespace Consumer
                 app.UseSwaggerUI();
             }
 
+            app.MapControllers();
+
+
+            app.MapPost("broadcast", async (string message, IHubContext<ChatHub, IChatClient> context) =>
+            {
+                await context.Clients.All.ReceiveMessage(message);
+
+                return Results.NoContent();
+            });
+
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
-
-            app.MapControllers();
+            app.MapHub<ChatHub>("chat-hub");
 
             app.Run();
         }

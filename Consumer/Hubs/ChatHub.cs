@@ -2,17 +2,16 @@
 
 namespace Consumer.Hubs
 {
-    public class ChatHub : Hub
+    public sealed class ChatHub : Hub<IChatClient>
     {
-        public async Task JoinSpecificChat(UserConnection connection)
+        public override async Task OnConnectedAsync()
         {
-            await Clients.All.SendAsync("ReceiveMessage", connection.UserName, $"{connection.UserName} connected to chat");
+            await Clients.All.ReceiveMessage($"{Context.ConnectionId} has joined");
         }
 
-        public async Task JoinSpecificChatRoom(UserConnection connection)
+        public async Task SendMessage(string message)
         {
-            await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
-            await Clients.Group(connection.ChatRoom).SendAsync("ReceiveMessage", "System", $"{connection.UserName} has joined the chat");
+            await Clients.All.ReceiveMessage($"{Context.ConnectionId}: {message}");
         }
     }
 }
