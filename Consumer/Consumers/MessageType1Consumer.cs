@@ -6,16 +6,22 @@ namespace Consumer.Consumers
     public class MessageType1Consumer : IConsumer<MessageType1>
     {
 
+         private readonly ILogger<MessageType1Consumer> _logger;
 
+        public MessageType1Consumer(ILogger<MessageType1Consumer> logger)
+        {
+            _logger = logger;
+        }
         public async Task Consume(ConsumeContext<MessageType1> context)
         {
+            _logger.LogInformation("Message consumed: {Message}", context.Message.TraceId);
             //throw new NotImplementedException();
 
         }
     }
-    public class ModelMessageConsumerDefinition : ConsumerDefinition<MessageType1Consumer>
+    public class MessageType1ConsumerDefinition : ConsumerDefinition<MessageType1Consumer>
     {
-        public ModelMessageConsumerDefinition()
+        public MessageType1ConsumerDefinition()
         {
             //// override the default endpoint name
             //EndpointName = "order-service";

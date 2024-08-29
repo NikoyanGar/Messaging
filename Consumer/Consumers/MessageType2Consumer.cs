@@ -5,17 +5,23 @@ namespace Consumer.Consumers
 {
     public class MessageType2Consumer : IConsumer<MessageType2>
     {
+        private readonly ILogger<MessageType2Consumer> _logger;
+
+        public MessageType2Consumer(ILogger<MessageType2Consumer> logger)
+        {
+            _logger = logger;
+        }
 
         public async Task Consume(ConsumeContext<MessageType2> context)
         {
+            _logger.LogInformation("Message consumed: {Message}", context.Message.TraceId);
+
             // throw new NotImplementedException();
-
-
         }
     }
-    public class IndexMessageConsumerDefinition : ConsumerDefinition<MessageType2Consumer>
+    public class MessageType2ConsumerDefinition : ConsumerDefinition<MessageType2Consumer>
     {
-        public IndexMessageConsumerDefinition()
+        public MessageType2ConsumerDefinition()
         {
             //// override the default endpoint name
             //EndpointName = "order-service";
