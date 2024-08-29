@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Common.Messages;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Consumer.Hubs
 {
@@ -9,9 +10,13 @@ namespace Consumer.Hubs
             await Clients.All.ReceiveMessage($"{Context.ConnectionId} has joined");
         }
 
-        public async Task SendMessage(string message)
+        public async Task SendMessage1(MessageType1 message)
         {
-            await Clients.All.ReceiveMessage($"{Context.ConnectionId}: {message}");
+            await Clients.All.ReceiveMessage1(message);
+        }
+        public async Task SendMessage2(MessageType2 message)
+        {
+            await Clients.All.ReceiveMessage2(message);
         }
     }
 }

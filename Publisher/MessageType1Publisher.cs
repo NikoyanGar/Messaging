@@ -29,7 +29,8 @@ namespace Publisher
                      EntityId = faker.Random.Int(1, 1000000),
                      Date = DateTime.UtcNow,
                  }, stoppingToken);
-                //await Task.Delay(1000, stoppingToken);
+
+                await Task.Delay(1000); // Add a 1-second delay
             }
         }
 

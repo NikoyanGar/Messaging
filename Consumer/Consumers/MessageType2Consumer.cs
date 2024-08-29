@@ -1,5 +1,7 @@
 ﻿using Common.Messages;
+using Consumer.Hubs;
 using MassTransit;
+using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 
 namespace Consumer.Consumers
@@ -7,16 +9,19 @@ namespace Consumer.Consumers
     public class MessageType2Consumer : IConsumer<MessageType2>
     {
         private readonly ILogger<MessageType2Consumer> _logger;
+        private readonly IHubContext<ChatHub, IChatClient> _hubContext;
 
-        public MessageType2Consumer(ILogger<MessageType2Consumer> logger)
+        public MessageType2Consumer(ILogger<MessageType2Consumer> logger, IHubContext<ChatHub, IChatClient> hubContext)
         {
             _logger = logger;
+            _hubContext = hubContext;
         }
 
         public async Task Consume(ConsumeContext<MessageType2> context)
         {
-             string messageJson = JsonConvert.SerializeObject(context.Message);
+            string messageJson = JsonConvert.SerializeObject(context.Message);
             _logger.LogInformation("Message consumed: {Message}", messageJson);
+            await _hubContext.Clients.All.ReceiveMessage2(context.Message);
 
             // throw new NotImplementedException();
         }

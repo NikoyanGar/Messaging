@@ -1,3 +1,4 @@
+using Common.Messages;
 using Consumer.DataService;
 using Consumer.Hubs;
 using Microsoft.AspNetCore.SignalR;
@@ -35,6 +36,20 @@ namespace Consumer
             app.MapPost("broadcast", async (string message, IHubContext<ChatHub, IChatClient> context) =>
             {
                 await context.Clients.All.ReceiveMessage(message);
+
+                return Results.NoContent();
+            });
+
+            app.MapPost("broadcastMessage1", async (MessageType1 message, IHubContext<ChatHub, IChatClient> context) =>
+            {
+                await context.Clients.All.ReceiveMessage1(message);
+
+                return Results.NoContent();
+            });
+
+            app.MapPost("broadcastMessage2", async (MessageType2 message, IHubContext<ChatHub, IChatClient> context) =>
+            {
+                await context.Clients.All.ReceiveMessage2(message);
 
                 return Results.NoContent();
             });

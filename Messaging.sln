@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HubClient", "HubClient\HubClient.csproj", "{14EB3FDE-1E4B-4FF6-9D35-5DFBE98A56D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HubClient", "HubClient\HubClient.csproj", "{59DD2D53-CE74-4F72-9EED-9B7ACF5D9FD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,10 @@ Global
 		{5F1C58D4-8EE4-4FC5-82EC-6B037FAE60B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F1C58D4-8EE4-4FC5-82EC-6B037FAE60B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F1C58D4-8EE4-4FC5-82EC-6B037FAE60B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14EB3FDE-1E4B-4FF6-9D35-5DFBE98A56D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14EB3FDE-1E4B-4FF6-9D35-5DFBE98A56D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14EB3FDE-1E4B-4FF6-9D35-5DFBE98A56D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14EB3FDE-1E4B-4FF6-9D35-5DFBE98A56D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DD2D53-CE74-4F72-9EED-9B7ACF5D9FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DD2D53-CE74-4F72-9EED-9B7ACF5D9FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DD2D53-CE74-4F72-9EED-9B7ACF5D9FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DD2D53-CE74-4F72-9EED-9B7ACF5D9FD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
