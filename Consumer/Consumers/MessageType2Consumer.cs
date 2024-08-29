@@ -1,5 +1,6 @@
 ﻿using Common.Messages;
 using MassTransit;
+using Newtonsoft.Json;
 
 namespace Consumer.Consumers
 {
@@ -14,7 +15,8 @@ namespace Consumer.Consumers
 
         public async Task Consume(ConsumeContext<MessageType2> context)
         {
-            _logger.LogInformation("Message consumed: {Message}", context.Message.TraceId);
+             string messageJson = JsonConvert.SerializeObject(context.Message);
+            _logger.LogInformation("Message consumed: {Message}", messageJson);
 
             // throw new NotImplementedException();
         }

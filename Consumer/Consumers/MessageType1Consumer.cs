@@ -1,22 +1,23 @@
 ﻿using Common.Messages;
 using MassTransit;
+using Newtonsoft.Json;
 
 namespace Consumer.Consumers
 {
     public class MessageType1Consumer : IConsumer<MessageType1>
     {
-
-         private readonly ILogger<MessageType1Consumer> _logger;
+        private readonly ILogger<MessageType1Consumer> _logger;
 
         public MessageType1Consumer(ILogger<MessageType1Consumer> logger)
         {
             _logger = logger;
         }
+
         public async Task Consume(ConsumeContext<MessageType1> context)
         {
-            _logger.LogInformation("Message consumed: {Message}", context.Message.TraceId);
+            string messageJson = JsonConvert.SerializeObject(context.Message);
+            _logger.LogInformation("Message consumed: {Message}", messageJson);
             //throw new NotImplementedException();
-
         }
     }
     public class MessageType1ConsumerDefinition : ConsumerDefinition<MessageType1Consumer>
